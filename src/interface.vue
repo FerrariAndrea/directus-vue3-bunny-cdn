@@ -46,9 +46,9 @@ export default {
     const uploadProgress = ref(false)
     const values = inject('values')
 
-    let folder = props.folder ? `${props.folder}/` : ''
+    let folder = props.folder ? `${props.folder}` : ''
     if (props.collection_as_subfolder) {
-      folder = `${folder}${props.collection}/`
+      folder = `${folder}${props.collection}`
     }
 
     const toggleProgress = () => uploadProgress.value = !uploadProgress.value;
