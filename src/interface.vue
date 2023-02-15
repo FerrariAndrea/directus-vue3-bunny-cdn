@@ -81,7 +81,7 @@ export default {
      * @returns {*}
      */
     const generateSignature = function (publicId, timestamp) {
-      const params = `public_id=${publicId}&timestamp=${timestamp}${apiSecret.value}`
+      const params = `public_id=${publicId}&timestamp=${timestamp}`
       return sha.default.hex(params)
     }
 
