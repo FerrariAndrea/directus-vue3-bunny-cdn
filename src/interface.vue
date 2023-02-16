@@ -102,7 +102,8 @@ export default {
     });
 
     /**
-     * @param formData
+     * @param id
+     * @param body
      * @returns {Promise<void>}
      */
     async function send(id,body) {
@@ -114,10 +115,6 @@ export default {
         AccessKey: key
       }});
       toggleProgress()
-
-      // toggleProgress()
-      // const response = await axios.post(`${apiUrl.value}/image/upload`, formData);
-      // toggleProgress()
       return `${apiGetUrl.value}/${folder}/${id}`;
     }
 
@@ -128,10 +125,6 @@ export default {
      */
     async function onDrop(acceptFiles, rejectReasons) {
       if (isDragAccept) {
-        // const formData = new FormData()
-        // let dataUrl = await urlToBase64(acceptFiles[0])
-        // formData.append('body', dataUrl)
-
         const fileName = generateFileName(acceptFiles[0].name)
         const timestamp = (new Date()).getTime().toString()
         const fileExtension = acceptFiles[0].name.split('.').pop();
