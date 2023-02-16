@@ -130,9 +130,9 @@ export default {
         let dataUrl = await urlToBase64(acceptFiles[0])
         // formData.append('body', dataUrl)
 
-        // const fileName = generateFileName(acceptFiles[0].name)
-        // const timestamp = (new Date()).getTime().toString()
-        // const id = generateSignature(fileName, timestamp);
+        const fileName = generateFileName(acceptFiles[0].name)
+        const timestamp = (new Date()).getTime().toString()
+        const id = generateSignature(fileName, timestamp);
 
         const url = await send(id,{body:dataUrl})
         emit('input', url)
