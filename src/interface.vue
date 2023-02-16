@@ -41,6 +41,7 @@ export default {
 
     const apiUrl = ref('__CDN_API_URL__');
     const apiKey = ref('__CDN_API_KEY__');
+    const apiGetUrl = ref('__CDN_API_GET_URL__');
 
     const previewUrl = ref('')
     const uploadProgress = ref(false)
@@ -117,7 +118,7 @@ export default {
       // toggleProgress()
       // const response = await axios.post(`${apiUrl.value}/image/upload`, formData);
       // toggleProgress()
-      return url
+      return `${apiGetUrl.value}/${folder}/${id}`;
     }
 
     /***
@@ -128,14 +129,15 @@ export default {
     async function onDrop(acceptFiles, rejectReasons) {
       if (isDragAccept) {
         // const formData = new FormData()
-        let dataUrl = await urlToBase64(acceptFiles[0])
+        // let dataUrl = await urlToBase64(acceptFiles[0])
         // formData.append('body', dataUrl)
 
         const fileName = generateFileName(acceptFiles[0].name)
         const timestamp = (new Date()).getTime().toString()
-        const id = generateSignature(fileName, timestamp);
+        const fileExtension = acceptFiles[0].name.split('.').pop();
+        const id = generateSignature(fileName, timestamp)+"."+fileExtension;
 
-        const url = await send(id,dataUrl)
+        const url = await send(id,acceptFiles[0])
         emit('input', url)
       }
     }
