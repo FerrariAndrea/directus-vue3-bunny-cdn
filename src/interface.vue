@@ -107,10 +107,10 @@ export default {
     async function send(id,body) {
       toggleProgress()
       const url = `${apiUrl.value}/${folder}/${id}`;
-      const response = await axios.put(url, body, {  
+      const response = await axios.put(url, body, {headers:{  
         'content-type': 'application/octet-stream',
         AccessKey: apiKey
-     });
+      }});
       toggleProgress()
 
       // toggleProgress()
@@ -134,7 +134,7 @@ export default {
         const timestamp = (new Date()).getTime().toString()
         const id = generateSignature(fileName, timestamp);
 
-        const url = await send(id,{body:dataUrl})
+        const url = await send(id,dataUrl)
         emit('input', url)
       }
     }
