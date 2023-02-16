@@ -107,9 +107,7 @@ export default {
     async function send(id,body) {
       toggleProgress()
       const url = `${apiUrl.value}/${folder}/${id}`;
-      const key = apiKey;
-      console.log("key",key);
-      console.log("key.value",key.value);
+      const key = apiKey.value;
       const response = await axios.put(url, body, {headers:{  
         'content-type': 'application/octet-stream',
         AccessKey: key
